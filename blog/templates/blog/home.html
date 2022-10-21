@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load static  %}
+
+
+{% block content %}
+
+
+
+
+<!-- <div>
+    <a href="{% url 'create-post' %}"><span>Create Post</span></a>
+    <hr>
+</div> -->
+<div class="container">
+
+    <div class="container">
+        <section>
+            
+            <div class="feature-posts">
+                <a href="{% url 'home' %}" class="feature-post-item">                       
+                    <span>Category</span>
+                </a>
+                {% for cast in category %}
+                <a href="{% url 'home' %}?q={{cast}}" class="feature-post-item">
+                    <img src="{{ cast.image.url}}" class="w-100" alt="">
+                    <div class="feature-post-caption">{{cast}}</div>
+                </a>
+                {% endfor %}
+            </div>  
+        </section>
+        <hr>
+       
+        <div class="page-container">
+            <div class="page-content">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h5 class="card-title">About</h5> 
+                        <small class="small text-muted"> 
+                            <span class="px-2">-</span>
+                            <a href="#" class="text-muted"></a>
+                        </small>
+                    </div>
+                    <div class="card-body">
+                        <div class="blog-media">
+                            <img src="{% static 'images_1/smiley_pics.jpg' %}" alt="" class="circle-100 mb-3">
+                            <a href="#" class="badge badge-primary"></a>     
+                        </div>  
+                        <p class="my-3">I am  young budding Agricultural engineer with keen interest in Food sustainability and green power generation. I builld websites in my spare time and read as a hobby.
+
+                            I love Food, Music and Romantic Stories( I love a good love song). Not a fan of sports though but we get along. 
+
+                            follow me on the various social media platforms, lets get to know each other. 
+                        </p>
+                    </div>
+                    <!-- <div class="socials mb-3 mt-2">
+                        <a href="javascript:void(0)"><i class="ti-facebook"></i></a>
+                        <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
+                        <a href="javascript:void(0)"><i class="ti-pinterest-alt"></i></a>
+                        <a href="javascript:void(0)"><i class="ti-instagram"></i></a>
+                        <a href="javascript:void(0)"><i class="ti-youtube"></i></a> -->
+                    
+                    <div class="card-footer d-flex justify-content-between align-items-center flex-basis-0">
+                       
+                        <a href="#" class="text-dark small text-muted">By : Ezeanyanwu James .C </a>
+                        <div class="socials mb-3 mt-2">
+                            <a href="javascript:void(0)"><i class="ti-facebook"></i></a>
+                            <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="ti-pinterest-alt"></i></a>
+                            <a href="javascript:void(0)"><i class="ti-instagram"></i></a>
+                            <a href="javascript:void(0)"><i class="ti-youtube"></i></a>
+                        </div>
+                    </div>                  
+                </div>
+                <hr>
+                <div class="card-header text-center">
+                    <h5 class="card-title">Recent Posts</h5> 
+               
+                </div>
+                {% for posts in post %}
+                <div class="row">                       
+                    <div class="col-lg-6">
+                        <div class="card text-center mb-5">
+                            <div class="card-header p-0">                                   
+                                <div class="blog-media">
+                                    <img src="{{posts.image.url}}" alt="" class="w-100">
+                                    <a href="#" class="badge badge-primary">{{posts.category}}</a>        
+                                </div>  
+                            </div>
+                            <div class="card-body px-0">
+                                <h5 class="card-title mb-2">{{posts.title}}</h5>    
+                                <small class="small text-muted">{{posts.created}} 
+                                    <span class="px-2">-</span>
+                                    <a href="#" class="text-muted"></a>
+                                </small>
+                                <p class="my-2">{{posts}}</p>
+                            </div>
+                            
+                            <div class="card-footer p-0 text-center">
+                                <a href="{% url 'post-details' posts.id %}" class="btn btn-outline-dark btn-sm">READ MORE</a>
+                            </div>                  
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card text-center mb-5">
+                            <div class="card-header p-0">                                   
+                                <div class="blog-media">
+                                    <img src="{{posts.image.url}}" alt="" class="w-100">
+                                    <a href="#" class="badge badge-primary">{{posts.category}}</a>        
+                                </div>  
+                            </div>
+                            <div class="card-body px-0">
+                                <h5 class="card-title mb-2">{{posts.title}}</h5> 
+                                <small class="small text-muted">{{posts.created}} 
+                                    <span class="px-2">-</span>
+                                    <a href="#" class="text-muted"></a>
+                                </small>
+                                <p class="my-2">{{posts}}</p>
+                            </div>
+                            
+                            <div class="card-footer p-0 text-center">
+                                <a href="{% url 'post-details' posts.id %}" class="btn btn-outline-dark btn-sm">READ MORE</a>
+                            </div>                  
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+           
+                <button class="btn btn-primary btn-block my-4">Load More Posts</button>
+            </div>
+        </div>
+       
+    </div>
+
+
+    </div>
+
+</div>
+ {% endblock content %}
+ 

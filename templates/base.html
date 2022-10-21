@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- font icons -->
+     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+     <!-- Bootstrap + JoeBLog main styles -->
+ 
+    <link rel="stylesheet" href="{% static 'css/joeblog.css' %}">
+    <title>Document</title>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    <!-- page First Navigation -->
+ <nav class="navbar navbar-light bg-light">
+    <div class="container">
+        <!-- Logo -->
+        <a class="navbar-brand" href="{% url 'home' %}"> 
+            <img src="{% static 'images_1/logo.svg' %}" alt=""> LoveBliss
+        </a>
+        <!-- logo ends -->
+        <div class="socials">
+            <a href="javascript:void(0)"><i class="ti-facebook"></i></a>
+            <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
+            <a href="javascript:void(0)"><i class="ti-pinterest-alt"></i></a>
+            <a href="javascript:void(0)"><i class="ti-instagram"></i></a>
+            <a href="javascript:void(0)"><i class="ti-youtube"></i></a>
+        </div>
+    </div>
+</nav>
+
+ <!-- Page Second Navigation -->
+  <nav class="navbar custom-navbar navbar-expand-md navbar-light bg-primary sticky-top"> 
+    <div class="container">
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav"> 
+                  {% if user.is_authenticated%}
+                 <h3> Hello {{user.username}}</h3>      
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'create-post' %}">Create Post</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+               
+                
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{% url 'home' %}?q={{cast}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                    </a>
+                    
+                    {% for cast in category %}
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'home' %}?q={{cast}}">{{cast}}</a>
+                    </div>
+                    {% endfor %}
+                </li>
+           
+            </ul> 
+             {% if user.is_authenticated%}
+             <div class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="{% url 'logout' %}" class="ml-4 btn btn-dark mt-1 btn-sm">Logout</a>
+                </li>
+            </div>
+            {% endif %}
+        </div> 
+    </div>
+</nav> 
+
+<header></header>
+    {% block content %}
+
+    {% endblock %}
+
+    <script src="{% static '/vendors/jquery/jquery-3.4.1.js' %}"></script> 
+    <script src="{% static 'vendors/bootstrap/bootstrap.bundle.js' %}"></script>
+
+    <!-- JoeBLog js -->
+    <script src="{% static 'js/joeblog.js' %}"></script> 
+</body>
+</html>
+
+ 

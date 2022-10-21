@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<header class="page-header page-header-mini">
+  <h1 class="title">{{room.title}}</h1>
+  <ol class="breadcrumb pb-0">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{room.title}}</li>
+      {% if user.is_authenticated%}
+      {% if request.user == room.author%}
+      <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'delete-post' room.id %}"> Delete</a></li>
+      <li class="breadcrumb-item active" aria-current="page"> <a href="{% url 'edit-post' room.id %}">Edit Post</a></li>
+      {% endif %}
+  
+      {% endif %}
+  </ol>
+ 
+  
+ 
+
+</header>
+<section class="container">
+  <div class="page-container">
+      <div class="page-content">
+        <div class="card">
+          <div class="card-header pt-0">
+              <h3 class="card-title mb-4">{{room.title}}</h3>
+              <div class="blog-media mb-4">
+                  <img src="{{ room.image.url}}" alt="" class="w-100">
+                  <a href="#" class="badge badge-primary">{{room.category}}</a> 
+              </div>  
+              <small class="small text-muted">
+                  <a href="#" class="text-muted">BY {{room.author}}</a>
+                  <span class="px-2">·</span>
+                  <span>{{room.created}}</span>
+                  <span class="px-2">·</span>
+                  <a href="#" class="text-muted"></a>
+              </small>
+          </div>
+          <div class="card-body border-top">
+              <p class="my-3">{{ room.body}}</p>
+          </div>
+          
+          <div class="card-footer">
+              <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Comments</a></h6>
+              <hr>
+              {% for casts in new_comments %}
+              <div class="media mt-5">
+                  <img src="" class="mr-3 thumb-sm rounded-circle" alt="...">
+                  <div class="media-body">
+                      <h6 class="mt-0">{{casts.name}}</h6>
+                      <p>{{casts.body}}</p>
+                      <a href="#" class="text-dark small font-weight-bold"><i class="ti-back-right"></i>{{casts.created}}</a>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>   
+          {% include "blog/comments.html" %}               
+        </div> 
+
+        <!-- Related Posts -->
+        <h6 class="mt-5 text-center">Related Posts</h6>
+        <hr>
+        <div class="row">                       
+            <div class="col-md-6 col-lg-4">
+                <div class="card mb-5">
+                    <div class="card-header p-0">                                   
+                        <div class="blog-media">
+                            <img src="assets/imgs/blog-2.jpg" alt="" class="w-100">
+                            <a href="#" class="badge badge-primary">#Placeat</a>        
+                        </div>  
+                    </div>
+                    <div class="card-body px-0">
+                        <h6 class="card-title mb-2"><a href="#" class="text-dark">Voluptates Corporis Placeat</a></h6>  
+                        <small class="small text-muted">January 20 2019 
+                            <span class="px-2">-</span>
+                            <a href="#" class="text-muted">34 Comments</a>
+                        </small>
+                    </div>                  
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card mb-5">
+                    <div class="card-header p-0">                                   
+                        <div class="blog-media">
+                            <img src="assets/imgs/blog-3.jpg" alt="" class="w-100">
+                            <a href="#" class="badge badge-primary">#dolores</a>        
+                        </div>  
+                    </div>
+                    <div class="card-body px-0">
+                        <h6 class="card-title mb-2"><a herf="#" class="text-dark">Dolorum Dolores Itaque</a></h6>   
+                        <small class="small text-muted">January 19 2019 
+                            <span class="px-2">-</span>
+                            <a href="#" class="text-muted">64 Comments</a>
+                        </small>
+                    </div>      
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 d-none d-lg-block">
+                <div class="card mb-5">
+                    <div class="card-header p-0">                                   
+                        <div class="blog-media">
+                            <img src="assets/imgs/blog-4.jpg" alt="" class="w-100">
+                            <a href="#" class="badge badge-primary">#amet</a>       
+                        </div>  
+                    </div>
+                    <div class="card-body px-0">
+                        <h6 class="card-title mb-2">Quisquam Dignissimos</h6>   
+                        <small class="small text-muted">January 17 2019 
+                            <span class="px-2">-</span>
+                            <a href="#" class="text-muted">93 Comments</a>
+                        </small>
+                    </div>  
+                </div>
+            </div>
+        </div>
+      </div>
+       <!-- End Related Posts -->
+  
+       
+    
+            <!-- Sidebar -->
+        <div class="page-sidebar">
+          <h6 class=" "></h6>
+          <a href="javascript:void(0)" class="badge badge-primary m-1"></a>
+          <a href="javascript:void(0)" class="badge badge-primary m-1"></a>
+          <a href="javascript:void(0)" class="badge badge-primary m-1"></a>
+          <a href="javascript:void(0)" class="badge badge-primary m-1"></a>
+          <a href="javascript:void(0)" class="badge badge-primary m-1"></a>
+          <a href="javascript:void(0)" class="badge badge-primary m-1"></a>
+          <a href="javascript:void(0)" class="badge badge-primary m-1"></a>
+          <a href="javascript:void(0)" class="badge badge-primary m-1"></a>
+          <a href="javascript:void(0)" class="badge badge-primary m-1"></a>
+          <a href="javascript:void(0)" class="badge badge-primary m-1"></a>
+
+          <div class="ad-card d-flex text-center align-items-center justify-content-center mt-4">
+              <span href="#" class="font-weight-bold"></span>
+          </div>
+        </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+{% endblock content %}
+
